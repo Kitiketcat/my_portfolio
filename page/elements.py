@@ -11,12 +11,11 @@ from selenium.webdriver.common.keys import Keys
 
 
 class WebElement(object):
-
     _locator = ('', '')
     _web_driver = None
     _page = None
     _timeout = 10
-    _wait_after_click = False  # TODO: how we can wait after click?
+    _wait_after_click = False  #TODO: how we can wait after click?
 
     def __init__(self, timeout=10, wait_after_click=False, **kwargs):
         self._timeout = timeout
@@ -32,7 +31,7 @@ class WebElement(object):
 
         try:
             element = WebDriverWait(self._web_driver, timeout).until(
-               EC.presence_of_element_located(self._locator)
+                EC.presence_of_element_located(self._locator)
             )
         except:
             print(colored('Element not found on the page!', 'red'))
@@ -161,7 +160,7 @@ class WebElement(object):
 
         if element:
             action = ActionChains(self._web_driver)
-            action.move_to_element_with_offset(element, x_offset, y_offset).\
+            action.move_to_element_with_offset(element, x_offset, y_offset). \
                 pause(hold_seconds).click(on_element=element).perform()
         else:
             msg = 'Element with locator {0} not found'
@@ -236,7 +235,7 @@ class ManyWebElements(WebElement):
 
         try:
             elements = WebDriverWait(self._web_driver, timeout).until(
-               EC.presence_of_all_elements_located(self._locator)
+                EC.presence_of_all_elements_located(self._locator)
             )
         except:
             print(colored('Elements not found on the page!', 'red'))
