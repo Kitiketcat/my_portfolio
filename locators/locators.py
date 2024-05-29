@@ -1,7 +1,7 @@
 import os
 
-from Maksim_Tsybulka.class_work_9_f.page.base_page import WebPage
-from Maksim_Tsybulka.class_work_9_f.page.elements import WebElement
+from page.base_page import WebPage
+from page.elements import WebElement
 
 
 class MainPage(WebPage):
