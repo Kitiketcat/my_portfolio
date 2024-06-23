@@ -7,11 +7,11 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route('/welcome')
+@app.route('/we')
 def welcome():
-    """ Эта функция запуская и отвечает за процесс возврата результата welcome.html. """
+    """ Эта функция запуская и отвечает за процесс возврата результата index.html. """
 
-    return render_template('welcome.html')
+    return render_template('index.html')
 
 
 @app.route("/error")
@@ -30,12 +30,12 @@ def run_allure():
                           stdin=subprocess.PIPE,
                           universal_newlines=True) as result:
         out = result.communicate()
-    return render_template('welcome.html', text=out, json=out)
+    return render_template('index.html', text=out, json=out)
 
 
-@app.route("/run")
-def run():
-    """ Эта функция запуская и отвечает за тесты страницы /example. """
+@app.route("/run_ui")
+def run_ui():
+    """ Эта функция запускает и отвечает за тесты страницы /example. """
 
     cmd = ["./scriptsh/run_aut_lk.sh"]
     with subprocess.Popen(cmd, stdout=subprocess.PIPE,
@@ -43,7 +43,7 @@ def run():
                           stdin=subprocess.PIPE,
                           universal_newlines=True) as result:
         out = result.communicate()
-    return render_template('welcome.html', text=out, json=out)
+    return render_template('index.html', text=out, json=out)
 
 
 if __name__ == "__main__":

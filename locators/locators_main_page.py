@@ -7,6 +7,8 @@ from page.elements import WebElement
 class MainPage(WebPage):
 
     def __init__(self, web_driver, url=''):
+        self.web_driver = web_driver
+        self.input_main_wrapper = web_driver.find_element_by_xpath("your_xpath_locator_for_input_main_wrapper")
         if not url:
             url = os.getenv("MAIN_URL") or 'https://www.barksfifth.com/'
 

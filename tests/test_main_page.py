@@ -1,5 +1,6 @@
+import time
+
 import allure
-import pytest
 import pytest_check as check
 from locators.locators_main_page import MainPage
 
@@ -8,7 +9,7 @@ def test_headers(web_browser):
     """Этот тест проверяет хедер главной страницы"""
 
     page = MainPage(web_browser)
-
+    time.sleep(2)
 
     elements = [
         (page.btn_headers_home, 'HOME', 'https://www.barksfifth.com/'),
@@ -23,16 +24,17 @@ def test_headers(web_browser):
 
     for elements_btn, elements_text, elements_link in elements:
         with allure.step(f'Проверка кнопки {elements_text}'):
-            check.is_true(elements_btn.is_visible())
-            check.is_true(elements_btn.is_clickable())
+            check.is_true(elements_btn.is_visible(), f'элемент {elements_text} не отображается')
+            check.is_true(elements_btn.is_clickable(), f'элемент {elements_text} не кликабелен')
             check.equal(elements_btn.get_text(), elements_text)
             check.equal(elements_btn.get_attribute('href'), elements_link)
 
-def teat_footer(web_browser):
+
+def test_footer(web_browser):
     """Этот тест проверяет футер главной страницы"""
 
     page = MainPage(web_browser)
-
+    time.sleep(2)
     elements = [
         (page.btn_footers_contact, 'Contact', 'https://www.barksfifth.com/contact'),
         (page.btn_footers_account, 'Account', 'https://www.barksfifth.com/account'),
@@ -47,4 +49,3 @@ def teat_footer(web_browser):
             check.is_true(elements_btn.is_clickable())
             check.equal(elements_btn.get_text(), elements_text)
             check.equal(page.input_main_wrapper.get_attribute('href'), elements_link)
-
